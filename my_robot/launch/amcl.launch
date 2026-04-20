@@ -1,0 +1,25 @@
+<launch>
+
+  <arg name="map_file" default="$(find my_robot)/maps/map.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <node name="amcl" pkg="amcl" type="amcl" output="screen">
+    <remap from="scan" to="/scan"/>
+    <param name="odom_frame_id" value="odom"/>
+    <param name="odom_model_type" value="diff-corrected"/>
+    <param name="base_frame_id" value="robot_footprint"/>
+    <param name="global_frame_id" value="map"/>
+    <param name="initial_pose_x" value="0.0"/>
+    <param name="initial_pose_y" value="0.0"/>
+    <param name="initial_pose_a" value="0.0"/>
+  </node>
+<rosparam param="move_base/global_costmap/robot_base_frame">robot_footprint</rosparam>
+<rosparam param="move_base/local_costmap/robot_base_frame">robot_footprint</rosparam>
+<rosparam param="move_base/global_costmap/global_frame">map</rosparam>
+<rosparam param="move_base/local_costmap/global_frame">odom</rosparam>
+
+  <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
+  </node>
+
+</launch>
+

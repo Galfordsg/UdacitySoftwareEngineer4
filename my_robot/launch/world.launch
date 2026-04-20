@@ -1,0 +1,17 @@
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find my_robot)/urdf/my_robot.xacro" />
+
+  <node name="spawn_my_robot" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-urdf -param robot_description -model my_robot -x 0 -y 0 -z 0.1" />
+
+  <node name="spawn_white_ball" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-sdf -model white_ball -x 2 -y 0 -z 0.5 -file $(find my_robot)/world/white_ball.sdf" />
+</launch>

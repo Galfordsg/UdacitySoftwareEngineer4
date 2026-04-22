@@ -9,9 +9,10 @@
     <param name="odom_model_type" value="diff-corrected"/>
     <param name="base_frame_id" value="robot_footprint"/>
     <param name="global_frame_id" value="map"/>
-    <param name="initial_pose_x" value="0.0"/>
-    <param name="initial_pose_y" value="0.0"/>
+    <param name="initial_pose_x" value="-10.49"/>
+    <param name="initial_pose_y" value="-0.59"/>
     <param name="initial_pose_a" value="0.0"/>
+
   </node>
 <rosparam param="move_base/global_costmap/robot_base_frame">robot_footprint</rosparam>
 <rosparam param="move_base/local_costmap/robot_base_frame">robot_footprint</rosparam>
